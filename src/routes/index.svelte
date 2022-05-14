@@ -16,10 +16,12 @@
 					<LandingPeeps />
 				</div>
 				<div class="p-10 md:p-15">
-					<h1 class="text-6xl font-serif font-extrabold text-center mb-10">
+					<h1 class="text-3xl text-6xl font-serif font-extrabold text-center mb-10">
 						Welcome to Project Taser!
 					</h1>
-					<nav class="flex justify-center space-x-3">
+					<nav
+						class="flex flex-col sm:flex-row justify-center items-center space-y-3 sm:space-y-0 sm:space-x-3"
+					>
 						<a class="button" href="/student">Student</a>
 						<a class="button " href="/teacher">Teacher</a>
 						<a class="button" href="/admin">Admin</a>
