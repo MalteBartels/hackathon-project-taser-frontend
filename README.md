@@ -11,7 +11,7 @@ yarn dev
 ```
 or start the server and open the app in a new browser tab
 ```shell
-yarn dev -- --open
+yarn dev --open
 ```
 
 ## Building
