@@ -1,21 +1,12 @@
-const MOCK_DATA = [
-    0.1, 0.3, 0.2, 0.3, 0.4, 0.6, 0.7, 0.75, 0.78, 0.8, 0.9, 0.96, 0.8, 0.7, 0.8, 0.86, 0.78, 0.89,
-    0.9, 0.95, 0.1, 0.3, 0.2, 0.3, 0.4, 0.6, 0.7, 0.75, 0.78, 0.8, 0.9, 0.96, 0.8, 0.7, 0.8, 0.86,
-    0.78, 0.89, 0.9, 0.95, 0.1, 0.3, 0.2, 0.3, 0.4, 0.6, 0.7, 0.75, 0.78, 0.8, 0.9, 0.96, 0.8, 0.7,
-    0.8, 0.86, 0.78, 0.89, 0.9, 0.95, 0.1, 0.3, 0.2, 0.3, 0.4, 0.6, 0.7, 0.75, 0.78, 0.8, 0.9, 0.96,
-    0.8, 0.7, 0.8, 0.86, 0.78, 0.89, 0.9, 0.95, 0.1, 0.3, 0.2, 0.3, 0.4, 0.6, 0.7, 0.75, 0.78, 0.8,
-    0.9, 0.96, 0.8, 0.7, 0.8, 0.86, 0.78, 0.89, 0.9, 0.95, 0.1, 0.3, 0.2, 0.3, 0.4, 0.6, 0.7, 0.75,
-    0.78, 0.8, 0.9, 0.96, 0.8, 0.7, 0.8, 0.86, 0.78, 0.89, 0.9, 0.95
-];
-
-let mockIterator = 0;
+import axios from "axios";
 
 /**
  * @returns Number[]
  */
-export const fetchStats = async () => {
-    mockIterator += 1;
-    // TODO: Fetch real data here
-    const loadedData = MOCK_DATA.slice(mockIterator, mockIterator + 10);
-    return loadedData.map((value, index) => ({ time: index, value }));
+export const fetchStats = async (/** @type String */ room) => {
+    var data;
+    axios.get(`http://realtimedata:8080/stats/${room}`).then((response) => {
+        data = JSON.parse(response.data);
+        return data;
+    })
 };

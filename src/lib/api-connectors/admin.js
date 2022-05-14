@@ -1,26 +1,30 @@
-const MOCK_ROOMS = ['U38-01.01', 'U38-01.02', 'U38-01.03', 'U38-01.04'];
+import axios from "axios";
 
-/**
+/*
  * @returns String[]
  */
 export const getAllRooms = async () => {
-    return MOCK_ROOMS;
+    axios.get(`http://admin:8080/admin/rooms`).then((response) => {
+        return response.data;
+    })
 }
 
 /**
- * @param String room 
+ * @param {String} room 
  * @returns String[]
  */
 export const removeRoom = async (/** @type String*/ room) => {
-    MOCK_ROOMS.splice(MOCK_ROOMS.indexOf(room), 1);
-    return MOCK_ROOMS;
+    axios.post(`http://admin:8080/admin/room/delete/${room}`).then((response) => {
+        console.log(response.data);
+    })
 }
 
 /**
- * @param String room 
+ * @param {String} room 
  * @returns String[]
  */
 export const addRoom = async (/** @type String*/ room) => {
-    MOCK_ROOMS.push(room);
-    return MOCK_ROOMS;
+    axios.post(`http://admin:8080/admin/room/create/${room}`).then((response) => {
+        console.log(response.data);
+    })
 }
