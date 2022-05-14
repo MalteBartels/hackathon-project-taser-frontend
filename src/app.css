@@ -16,6 +16,25 @@ body {
     @apply transition-colors duration-150;
 }
 
+.button.button--solid {
+    @apply bg-slate-900 text-white;
+    @apply border-slate-900;
+}
+
+.button:active,
+.button:focus,
 .button:hover {
     @apply bg-slate-900 text-white;
+}
+
+.button.button--solid:active,
+.button.button--solid:focus,
+.button.button--solid:hover {
+    @apply bg-slate-700 text-white;
+    @apply border-slate-700;
+}
+
+.button:active,
+.button:focus {
+    @apply ring-4 ring-slate-400;
 }
