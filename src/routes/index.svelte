@@ -65,7 +65,7 @@
 				{:else if loginAsRole === ADMIN}
 					<div class="flex flex-col items-center">
 						<p class="mb-3">TODO: Implement authentication for admins</p>
-						<a class="button button-solid" href="/teacher">Login</a>
+						<a class="button button-solid" href="/admin">Login</a>
 					</div>
 				{/if}
 			</div>
