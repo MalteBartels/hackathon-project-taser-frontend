@@ -1,11 +1,16 @@
 ## Developing
+Install the required dependencies:
+```shell
+yarn
+```
 
-Once you've created a project and installed dependencies with `yarn`, start a development server:
+Start a development server:
 
-```bash
+```shell
 yarn dev
-
-# or start the server and open the app in a new browser tab
+```
+or start the server and open the app in a new browser tab
+```shell
 yarn dev -- --open
 ```
 
