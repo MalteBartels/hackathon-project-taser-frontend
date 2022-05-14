@@ -9,6 +9,10 @@ const MOCK_DATA = [
 ];
 
 let mockIterator = 0;
+
+/**
+ * @returns Number[]
+ */
 export const fetchStats = async () => {
     mockIterator += 1;
     // TODO: Fetch real data here
