@@ -2,6 +2,7 @@
 	import LandingPeeps from '$lib/landing-peeps.svelte';
 	import Layout from './__layout.svelte';
 	import Login from '$lib/login.svelte';
+	import { goto } from '$app/navigation';
 
 	// Constants to avoid typos in identifying strings
 	const STUDENT = 'student';
@@ -22,9 +23,14 @@
 	 * Handles the login event of the login component
 	 *
 	 * @param {{ detail: {roomNumber: Number}}} event
+	 * @param {"student" | "teacher" | "admin" | ""} role
 	 */
-	function handleLogin(event) {
-		alert(event.detail.roomNumber);
+	function handleLogin(event, role) {
+		if (role && event?.detail?.roomNumber) {
+			goto(`/${event.detail.roomNumber}/${role}`);
+		} else {
+			console.error('Invalid role or event', { role, event });
+		}
 	}
 </script>
 
@@ -51,7 +57,10 @@
 					</nav>
 				{:else if loginAsRole === STUDENT || loginAsRole === TEACHER}
 					<div class="mt-4">
-						<Login on:login={handleLogin} />
+						<Login
+							on:login={(/** @type {{ detail: {roomNumber: Number}}} */ event) =>
+								handleLogin(event, loginAsRole)}
+						/>
 					</div>
 				{:else if loginAsRole === ADMIN}
 					<div class="flex flex-col items-center">
