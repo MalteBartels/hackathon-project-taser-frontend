@@ -3,7 +3,7 @@
 	import ConfusionDiagram from '$lib/confusion-diagram.svelte';
 	import AvatarTeacher from '$lib/avatar-teacher.svelte';
 	import { onMount } from 'svelte';
-	import { fetchStats } from '$lib/api-connectors/query';
+	import { fetchStats } from '$lib/api-connectors/realTimeData';
 	import { goto } from '$app/navigation';
 
 	/** Current room number from the url */

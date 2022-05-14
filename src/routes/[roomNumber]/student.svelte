@@ -4,8 +4,9 @@
 	import ConfusionDiagram from '$lib/confusion-diagram.svelte';
 	import AvatarLost from '$lib/avatar-lost.svelte';
 	import AvatarNotLost from '$lib/avatar-not-lost.svelte';
-	import { fetchStats } from '$lib/api-connectors/query';
+	import { fetchStats } from '$lib/api-connectors/realTimeData';
 	import { goto } from '$app/navigation';
+	import { postVote } from '$lib/api-connectors/vote';
 
 	/** Current room number from the url */
 	const roomNumber = $page.params.roomNumber;
@@ -14,6 +15,15 @@
 	let isLost = false;
 	const setStatusLost = () => (isLost = true);
 	const setStatusNotLost = () => (isLost = false);
+
+	function handleLost() {
+		setStatusLost();
+		postVote(true);
+	}
+	function handleNotLost() {
+		setStatusNotLost();
+		postVote(false);
+	}
 
 	/** Requests per second */
 	const REFRESH_RATE = 1;
@@ -49,10 +59,10 @@
 			</div>
 
 			<div class="flex flex-col">
-				<button class={`button ${!isLost ? 'button--solid' : ''}`} on:click={setStatusNotLost}>
+				<button class={`button ${!isLost ? 'button--solid' : ''}`} on:click={handleNotLost}>
 					Not Lost
 				</button>
-				<button class={`button ${isLost ? 'button--solid' : ''}`} on:click={setStatusLost}>
+				<button class={`button ${isLost ? 'button--solid' : ''}`} on:click={handleLost}>
 					Lost
 				</button>
 			</div>
