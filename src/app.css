@@ -1,0 +1,21 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+body {
+    @apply bg-gray-900;
+    @apply text-slate-900;
+}
+
+.button {
+    @apply text-center;
+    @apply px-4 py-2;
+    @apply w-40;
+    @apply font-bold;
+    @apply border-2 border-slate-900;
+    @apply transition-colors duration-150;
+}
+
+.button:hover {
+    @apply bg-slate-900 text-white;
+}
