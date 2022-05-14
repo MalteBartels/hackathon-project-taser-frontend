@@ -22,7 +22,7 @@
 		padding={{ right: 10, bottom: 20, left: 25 }}
 		x={X_KEY}
 		y={Y_KEY}
-		yDomain={[0, null]}
+		yDomain={[0, 1]}
 		{data}
 	>
 		<Svg>

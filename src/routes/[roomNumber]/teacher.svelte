@@ -2,32 +2,30 @@
 	import { page } from '$app/stores';
 	import ConfusionDiagram from '$lib/confusion-diagram.svelte';
 	import AvatarTeacher from '$lib/avatar-teacher.svelte';
+	import { onMount } from 'svelte';
+	import { fetchStats } from '$lib/api-connectors/query';
+	import { goto } from '$app/navigation';
 
 	/** Current room number from the url */
 	const roomNumber = $page.params.roomNumber;
 
-	const MOCK_DATA = [
-		{ time: 1, value: 0.1 },
-		{ time: 2, value: 0.3 },
-		{ time: 3, value: 0.2 },
-		{ time: 4, value: 0.3 },
-		{ time: 5, value: 0.4 },
-		{ time: 6, value: 0.6 },
-		{ time: 7, value: 0.7 },
-		{ time: 8, value: 0.75 },
-		{ time: 9, value: 0.78 },
-		{ time: 10, value: 0.8 },
-		{ time: 11, value: 0.9 },
-		{ time: 12, value: 0.96 },
-		{ time: 13, value: 0.8 },
-		{ time: 14, value: 0.7 },
-		{ time: 15, value: 0.8 },
-		{ time: 16, value: 0.86 },
-		{ time: 17, value: 0.78 },
-		{ time: 18, value: 0.89 },
-		{ time: 19, value: 0.9 },
-		{ time: 20, value: 0.95 }
-	];
+	/** Requests per second */
+	const REFRESH_RATE = 1;
+
+	/** @type {{time: Number, value: Number}[]} */
+	let data = [];
+
+	onMount(async () => {
+		setInterval(async () => {
+			try {
+				data = await fetchStats();
+			} catch (e) {
+				if (e.status === 404) {
+					goto('/__error');
+				}
+			}
+		}, REFRESH_RATE * 1000);
+	});
 </script>
 
 <main class="grid sm:grid-cols-2 lg:grid-cols-3 gap-3 p-5">
@@ -41,7 +39,7 @@
 	<div class="bg-white p-5 sm:p-10 md:p-15 min-h-[50vh] sm:min-h-0 flex flex-col">
 		<h2 class="text-lg md:text-2xl font-bold font-serif mb-4">Current class confusion:</h2>
 
-		<ConfusionDiagram data={MOCK_DATA} />
+		<ConfusionDiagram {data} />
 	</div>
 	<div class="bg-white p-5 sm:p-10 md:p-15 col-start-1">
 		<h2 class="text-lg md:text-2xl font-bold font-serif mb-4">Everything done here?</h2>
