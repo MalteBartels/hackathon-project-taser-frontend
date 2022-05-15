@@ -18,7 +18,7 @@
 	onMount(async () => {
 		setInterval(async () => {
 			try {
-				data = await fetchStats();
+				data = await fetchStats(roomNumber);
 			} catch (e) {
 				if (e.status === 404) {
 					goto('/__error');

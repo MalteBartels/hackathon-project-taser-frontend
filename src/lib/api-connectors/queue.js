@@ -5,10 +5,10 @@ const ID = Date.now() * Math.random();
 /**
  * Post a vote to the queue of the current room
  */
-export const postVote = async (/** @type Boolean */ vote, /**@type String */ room) => {
+export const postVote = async (/** @type Boolean */ vote, /**@type String */ roomNumber) => {
     const payload = JSON.stringify({vote})
     
-    const response = await fetch(`${QUEUE_API_URL}/store/${room}`, {
+    const response = await fetch(`${QUEUE_API_URL}/store/${encodeURIComponent(roomNumber)}`, {
         method: 'POST',
         headers: {
           'Content-Type': 'application/json'
