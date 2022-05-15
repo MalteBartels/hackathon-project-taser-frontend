@@ -1,5 +1,5 @@
 <script>
-	import { onMount } from 'svelte';
+	import { onDestroy, onMount } from 'svelte';
 	import { page } from '$app/stores';
 	import ConfusionDiagram from '$lib/confusion-diagram.svelte';
 	import AvatarLost from '$lib/avatar-lost.svelte';
@@ -31,8 +31,13 @@
 	/** @type {{time: Number, value: Number}[]} */
 	let data = [];
 
+	/**
+	 * @type {Timer}
+	 */
+	let updateInterval;
+
 	onMount(async () => {
-		setInterval(async () => {
+		updateInterval = setInterval(async () => {
 			try {
 				data = await fetchStats(roomNumber);
 			} catch (e) {
@@ -41,6 +46,10 @@
 				}
 			}
 		}, REFRESH_RATE * 1000);
+	});
+
+	onDestroy(() => {
+		clearInterval(updateInterval);
 	});
 </script>
 
