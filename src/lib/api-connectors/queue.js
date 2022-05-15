@@ -6,14 +6,14 @@ const ID = Date.now() * Math.random();
  * Post a vote to the queue of the current room
  */
 export const postVote = async (/** @type Boolean */ vote, /**@type String */ roomNumber) => {
-    const payload = JSON.stringify({vote})
+    const payload = `vote=${vote}`
     
     const response = await fetch(`${QUEUE_API_URL}/store/${encodeURIComponent(roomNumber)}`, {
-        method: 'POST',
-        headers: {
-          'Content-Type': 'application/json'
-        },
-        body: payload // body data type must match "Content-Type" header
+      method: 'POST',
+      headers: {
+        'Content-Type': 'application/x-www-form-urlencoded;charset=UTF-8'
+      },
+      body: payload,
       });
 
     return response.json();
