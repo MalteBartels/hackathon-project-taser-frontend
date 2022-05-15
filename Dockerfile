@@ -1,10 +1,10 @@
 FROM node:18-alpine as yarn-build
 WORKDIR /app
-COPY package.json /app 
-COPY yarn.lock /app
+COPY package.json /app/package.json
+COPY yarn.lock /app/yarn.lock
 RUN yarn install 
-COPY . /app 
-CMD yarn build
+COPY . /app
+RUN yarn build
 
 FROM node:18-alpine
 WORKDIR /app
