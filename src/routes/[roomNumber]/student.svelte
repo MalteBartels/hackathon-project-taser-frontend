@@ -6,7 +6,7 @@
 	import AvatarNotLost from '$lib/avatar-not-lost.svelte';
 	import { fetchStats } from '$lib/api-connectors/realTimeData';
 	import { goto } from '$app/navigation';
-	import { postVote } from '$lib/api-connectors/query';
+	import { postVote } from '$lib/api-connectors/queue';
 
 	/** Current room number from the url */
 	const roomNumber = $page.params.roomNumber;
@@ -18,11 +18,11 @@
 
 	function handleLost() {
 		setStatusLost();
-		postVote(true);
+		postVote(true, roomNumber);
 	}
 	function handleNotLost() {
 		setStatusNotLost();
-		postVote(false);
+		postVote(false, roomNumber);
 	}
 
 	/** Requests per second */
