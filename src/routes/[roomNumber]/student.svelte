@@ -18,11 +18,11 @@
 
 	function handleLost() {
 		setStatusLost();
-		postVote(true, roomNumber);
+		postVote(true);
 	}
 	function handleNotLost() {
 		setStatusNotLost();
-		postVote(false, roomNumber);
+		postVote(false);
 	}
 
 	/** Requests per second */
