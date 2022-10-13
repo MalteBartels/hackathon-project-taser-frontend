@@ -1,6 +1,6 @@
 # Project Taser
 
-Project Taser is Hacakthon Project at university of Stuttgart, to track students level of comprehension in real time through a highly scalable microservice architecture and a Svelte based web app (because why make it simple when you only got 48 hours).
+Project Taser is Hackathon Project at university of Stuttgart, to track students level of comprehension in real time through a highly scalable microservice architecture and a Svelte based web app (because why make it simple when you only got 48 hours).
 
 To concept is simple: All students have the app. If one is lost, he:she presses the "lost" button.
 The professor can see the percentage of lost students in realtime on his:her device. 
